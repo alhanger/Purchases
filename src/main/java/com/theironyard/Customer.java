@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by alhanger on 11/11/15.
@@ -18,6 +19,6 @@ public class Customer {
     String name;
     String email;
 
-    @OneToMany
-    Purchase purchases;
+    @OneToMany (mappedBy = "customer")
+    List<Purchase> purchases;
 }

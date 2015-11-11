@@ -6,5 +6,44 @@
 </head>
 <body>
 
+<a href="/">All</a>
+<a href="/?category=Furniture">Furniture</a>
+<a href="/?category=Alcohol">Alcohol</a>
+<a href="/?category=Toiletries">Toiletries</a>
+<a href="/?category=Shoes">Shoes</a>
+<a href="/?category=Food">Food</a>
+<a href="/?category=Jewelry">Jewelry</a>
+
+<br><br>
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>
+            {{#isAsc}}
+            <a href="/?showCategory=false">Category</a>
+            {{/isAsc}}
+            {{^isAsc}}
+            <a href="/?showCategory=true">Category</a>
+            {{/isAsc}}
+        </td>
+        <td>Credit Card</td>
+        <td>CVV</td>
+        <td>Date</td>
+    </tr>
+    {{#purchases}}
+    {{#customer}}
+    <tr>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>{{category}}</td>
+        <td>{{cardNum}}</td>
+        <td>{{validation}}</td>
+        <td>{{date}}</td>
+    </tr>
+    {{/customer}}
+    {{/purchases}}
+</table>
 </body>
 </html>
