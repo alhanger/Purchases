@@ -13,4 +13,7 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
 
     @Query("from Purchase p order by p.category asc")
     List<Purchase> orderByAsc();
+
+    @Query("from Purchase p order by p.category desc")
+    List<Purchase> orderByDsc();
 }

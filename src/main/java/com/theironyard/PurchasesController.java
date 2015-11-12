@@ -34,10 +34,18 @@ public class PurchasesController {
     }
 
     @RequestMapping("/")
-    public String home(Model model, String category, String showCategory) {
+    public String home(Model model, String category, String showCategory, HttpServletRequest request) {
 
         if (showCategory != null) {
-            model.addAttribute("purchases", purchases.orderByAsc());
+            String isAscStr = (String) request.getAttribute("isAsc");
+            boolean isAsc = isAscStr != null && isAscStr.equals("true");
+
+            if (isAsc == true) {
+                model.addAttribute("purchases", purchases.orderByAsc());
+            }
+            else {
+                model.addAttribute("purchases", purchases.orderByDsc());
+            }
         }
         else if (category != null) {
             model.addAttribute("purchases", purchases.findByCategory(category));
@@ -91,8 +99,7 @@ public class PurchasesController {
             purchase.validation = col[3];
             purchase.category = col[4];
 
-            String customerId = col[0];
-            int id = Integer.valueOf(customerId);
+            int id = Integer.valueOf(col[0]);
 
             purchase.customer = customers.findOne(id);
 
