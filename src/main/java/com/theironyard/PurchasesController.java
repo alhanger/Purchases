@@ -36,22 +36,21 @@ public class PurchasesController {
     @RequestMapping("/")
     public String home(Model model, String category, String showCategory, HttpServletRequest request) {
 
-        if (showCategory != null) {
-            String isAscStr = (String) request.getAttribute("isAsc");
-            boolean isAsc = isAscStr != null && isAscStr.equals("true");
-
-            if (isAsc == true) {
-                model.addAttribute("purchases", purchases.orderByAsc());
-            }
-            else {
-                model.addAttribute("purchases", purchases.orderByDsc());
-            }
-        }
-        else if (category != null) {
+//        if (showCategory != null) {
+//            String isAscStr = (String) request.getAttribute("isAsc");
+//            boolean isAsc = isAscStr != null && isAscStr.equals("true");
+//
+//            if (isAsc == true) {
+//                model.addAttribute("purchases", purchases.orderByAsc());
+//            }
+//            else {
+//                model.addAttribute("purchases", purchases.orderByDsc());
+//            }
+//        }
+        if (category != null) {
             model.addAttribute("purchases", purchases.findByCategory(category));
         }
         else {
-            model.addAttribute("customers", customers.findAll());
             model.addAttribute("purchases", purchases.findAll());
         }
 
@@ -100,7 +99,6 @@ public class PurchasesController {
             purchase.category = col[4];
 
             int id = Integer.valueOf(col[0]);
-
             purchase.customer = customers.findOne(id);
 
             purchases.save(purchase);

@@ -20,29 +20,22 @@
     <tr>
         <td>Name</td>
         <td>Email</td>
-        <td>
-            {{#isAsc}}
-            <a href="/?showCategory=true">Category</a>
-            {{/isAsc}}
-            {{^isAsc}}
-            <a href="/?showCategory=false">Category</a>
-            {{/isAsc}}
-        </td>
+        <td>Category</td>
         <td>Credit Card</td>
         <td>CVV</td>
         <td>Date</td>
     </tr>
     {{#purchases}}
-    {{#customer}}
     <tr>
+        {{#customer}}
         <td>{{name}}</td>
         <td>{{email}}</td>
         <td>{{category}}</td>
         <td>{{cardNum}}</td>
         <td>{{validation}}</td>
         <td>{{date}}</td>
+        {{/customer}}
     </tr>
-    {{/customer}}
     {{/purchases}}
 </table>
 </body>
